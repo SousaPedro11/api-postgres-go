@@ -1,0 +1,9 @@
+[api]
+port = "9000"
+
+[database]
+database = "api_postgres_go"
+host = "db"
+password = "1122"
+port = "5432"
+user = "user_todo"
