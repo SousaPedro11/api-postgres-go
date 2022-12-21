@@ -29,13 +29,22 @@ func OpenConnection() (*sql.DB, error) {
 	fmt.Println("Connected to database")
 
 	driver, err := postgres.WithInstance(connection, &postgres.Config{})
+
+	if err != nil {
+		panic(err)
+	}
+
 	m, err := migrate.NewWithDatabaseInstance(
 		"file://./db/migrations",
 		"postgres", driver)
 	if err != nil {
 		panic(err)
 	}
-	m.Up()
+
+	// migrations up with check errors
+	if err := m.Up(); err != nil && err != migrate.ErrNoChange {
+		panic(err)
+	}
 
 	return connection, err
 }

@@ -23,9 +23,7 @@ import (
 // license.name MIT
 // license.url http://opensource.org/licenses/MIT
 func main() {
-	err := configs.Load()
-
-	if err != nil {
+	if err := configs.Load(); err != nil {
 		panic(err)
 	}
 
@@ -41,5 +39,7 @@ func main() {
 
 	router.Mount("/swagger", httpSwagger.Handler())
 
-	http.ListenAndServe(fmt.Sprintf(":%s", configs.GetServerPort()), router)
+	if err := http.ListenAndServe(fmt.Sprintf(":%s", configs.GetServerPort()), router); err != nil {
+		panic(err)
+	}
 }

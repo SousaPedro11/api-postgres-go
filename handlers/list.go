@@ -27,5 +27,9 @@ func List(writer http.ResponseWriter, request *http.Request) {
 	}
 
 	writer.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(writer).Encode(todos)
+
+	if err := json.NewEncoder(writer).Encode(todos); err != nil {
+		log.Printf("Error encoding JSON: %v", err)
+		http.Error(writer, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+	}
 }

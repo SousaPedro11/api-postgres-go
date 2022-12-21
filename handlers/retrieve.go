@@ -45,5 +45,9 @@ func Retrieve(writer http.ResponseWriter, request *http.Request) {
 	}
 
 	writer.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(writer).Encode(todo)
+
+	if err := json.NewEncoder(writer).Encode(todo); err != nil {
+		log.Printf("Error decoding JSON: %v", err)
+		http.Error(writer, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+	}
 }
