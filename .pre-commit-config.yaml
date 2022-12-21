@@ -25,7 +25,12 @@ repos:
     rev: v0.5.1
     hooks:
       - id: go-fmt
+      - id: go-vet
       - id: go-imports
+      - id: go-cyclo
+      - id: validate-toml
       - id: no-go-testing
       - id: golangci-lint
+      - id: go-critic
       - id: go-unit-tests
+      - id: go-mod-tidy
