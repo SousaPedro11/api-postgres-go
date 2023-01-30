@@ -9,7 +9,7 @@ require (
 	github.com/lib/pq v1.10.7
 	github.com/spf13/viper v1.14.0
 	github.com/swaggo/http-swagger v1.3.3
-	github.com/swaggo/swag v1.8.9
+	github.com/swaggo/swag v1.8.10
 )
 
 require (
